@@ -15,28 +15,28 @@ import duckdb
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 DB_PATH = ROOT / "northwind_dw.duckdb"
-my_dict = {'name': 'Art',
+my_dict = {'name': 'oum',
 'secondname': 'Labubu'
 }
 print(f"My name is {my_dict['name']}")
 
 # ตารางใน schema raw → ไฟล์ต้นทาง (มาจาก 2 ระบบ)
 SOURCES = {
-# แหล่ง A: ระบบขายปัจจุบัน
-"customer": "raw/customer.csv",
-"employees": "raw/employees.csv",
-"orders": "legacy/orders.csv",
-"order_details": "legacy/order_details.csv",
+    # แหล่ง A: ระบบปัจจุบัน
+    "customer": "raw/customer.csv",
+    "employees": "raw/employees.csv",
+    "suppliers": "raw/suppliers.csv",
+    "shippers": "raw/shippers.csv",
+    "products": "raw/products.csv",
 
-# แหล่ง B: ระบบขายเดิม
-"legacy_orders": "raw/orders.csv",
-"legacy_order_details": "raw/order_details.csv",
+    # แหล่ง B: ระบบเดิม
+    "orders": "legacy/orders.csv",
+    "order_details": "legacy/order_details.csv",
 
-"products": "raw/products.csv",
-"shippers": "raw/shippers.csv",
-"suppliers": "raw/suppliers.csv", 
+    # ข้อมูลจากระบบอีกชุด
+    "legacy_orders": "raw/orders.csv",
+    "legacy_order_details": "raw/order_details.csv",
 }
-
 
 def main() -> None:
     con = duckdb.connect(str(DB_PATH))
